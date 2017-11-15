@@ -4,7 +4,7 @@ target/
 .project
 logs/
 ./logs/
-.idea
+.idea/*
 *.iml
 mvnw
 */*.cmd

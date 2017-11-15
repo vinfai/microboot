@@ -7,3 +7,4 @@
 
  INSERT INTO `user_info` VALUES (1, '张三', '123456');
 
+select * from user_info

@@ -38,6 +38,16 @@ public class UserInfo implements Serializable{
         this.password = password;
     }
 
+    public UserInfo(Integer id, String userName, String password) {
+        this.id = id;
+        this.userName = userName;
+        this.password = password;
+    }
+
+    public UserInfo() {
+
+    }
+
     @Override
     public String toString() {
         return "UserInfo{" +
