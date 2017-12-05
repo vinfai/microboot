@@ -33,7 +33,8 @@ public class RabbitMQApplicationTests {
 
     @Test
     public void UserInfoSender() throws InterruptedException {
-        userInfoSender.sendUserInfo();
+//        userInfoSender.sendUserInfo();
+        userInfoSender.sendUserPoint();
         Thread.sleep(100000L);
     }
 

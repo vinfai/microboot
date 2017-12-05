@@ -1,11 +1,10 @@
 package com.vinfai.config;
 
-import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.amqp.rabbit.support.CorrelationData;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -37,6 +36,7 @@ public class RabbitMQConfig {
     /**
      * 创建连接工厂
      */
+    @Bean
     public ConnectionFactory connectionFactory() {
         CachingConnectionFactory factory = new CachingConnectionFactory();
         factory.setAddresses(addresses);
@@ -49,34 +49,38 @@ public class RabbitMQConfig {
     }
 
     @Bean
+    public SimpleRabbitListenerContainerFactory myRabbitListenerContainerFactory() {
+        SimpleRabbitListenerContainerFactory factory = new SimpleRabbitListenerContainerFactory();
+//        factory.setConcurrentConsumers(1);
+//        factory.setMaxConcurrentConsumers(10);
+
+        factory.setConnectionFactory(connectionFactory());
+        return factory;
+    }
+
+    @Bean
     public RabbitTemplate createRabbitTemplate(ConnectionFactory connectionFactory) {
         RabbitTemplate rabbitTemplate = new RabbitTemplate();
         rabbitTemplate.setConnectionFactory(connectionFactory);
         //TODO why?
         rabbitTemplate.setMandatory(true);
 
-        rabbitTemplate.setConfirmCallback(new RabbitTemplate.ConfirmCallback() {
-            @Override
-            public void confirm(CorrelationData correlationData, boolean ack, String cause) {
-                System.out.println("================");
-                System.out.println("correlationData = " + correlationData);
-                System.out.println("ack = " + ack);
-                System.out.println("cause = " + cause);
-                System.out.println("================");
-            }
+        rabbitTemplate.setConfirmCallback((correlationData, ack, cause) -> {
+            System.out.println("================");
+            System.out.println("correlationData = " + correlationData);
+            System.out.println("ack = " + ack);
+            System.out.println("cause = " + cause);
+            System.out.println("================");
         });
 
-        rabbitTemplate.setReturnCallback(new RabbitTemplate.ReturnCallback() {
-            @Override
-            public void returnedMessage(Message message, int replyCode, String replyText, String exchange, String routingKey) {
-                System.out.println("================");
-                System.out.println("message = " + message);
-                System.out.println("replyCode = " + replyCode);
-                System.out.println("replyText = " + replyText);
-                System.out.println("exchange = " + exchange);
-                System.out.println("routingKey = " + routingKey);
-                System.out.println("================");
-            }
+        rabbitTemplate.setReturnCallback((message, replyCode, replyText, exchange, routingKey) -> {
+            System.out.println("================");
+            System.out.println("message = " + message);
+            System.out.println("replyCode = " + replyCode);
+            System.out.println("replyText = " + replyText);
+            System.out.println("exchange = " + exchange);
+            System.out.println("routingKey = " + routingKey);
+            System.out.println("================");
         });
 
         return rabbitTemplate;
