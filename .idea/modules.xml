@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/microboot-base/microboot-base.iml" filepath="$PROJECT_DIR$/microboot-base/microboot-base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/microboot-mybatis/microboot-mybatis.iml" filepath="$PROJECT_DIR$/microboot-mybatis/microboot-mybatis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/microboot-rabbitmq/microboot-rabbitmq.iml" filepath="$PROJECT_DIR$/microboot-rabbitmq/microboot-rabbitmq.iml" />
+    </modules>
+  </component>
+</project>

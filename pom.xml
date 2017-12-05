@@ -17,6 +17,11 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
+	<modules>
+		<module>microboot-base</module>
+		<module>microboot-mybatis</module>
+		<module>microboot-rabbitmq</module>
+	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -66,6 +71,7 @@
 				<artifactId>mybatis-spring-boot-starter</artifactId>
 				<version>${mybatis-spring-boot-starter.version}</version>
 			</dependency>
+
 		</dependencies>
 
 	</dependencyManagement>

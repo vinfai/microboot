@@ -5,7 +5,10 @@
 
 	<artifactId>microboot-base</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+    <modules>
+        <module>../microboot-rabbitmq</module>
+    </modules>
+    <packaging>pom</packaging>
 
 	<name>microboot-base</name>
 	<description>Demo project for Spring Boot</description>
