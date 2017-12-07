@@ -1,6 +1,6 @@
 package com.vinfai.sms.service.impl;
 
-import com.vinfai.sms.partner.ISmsChannelService;
+import com.vinfai.sms.channel.ISmsChannelService;
 import com.vinfai.sms.route.ISmsChannelRoutingRule;
 import com.vinfai.sms.route.SmsChannelRouteContext;
 import com.vinfai.sms.route.impl.SimpleSmsChannelRoutingRule;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 /**
  * 短信服务实现
  *
- * @author fangwenhui
+ * @author vinfai
  * @date 2017-12-07 9:50
  **/
 @Service("smsService")

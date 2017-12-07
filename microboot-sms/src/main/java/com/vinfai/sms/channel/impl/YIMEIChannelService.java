@@ -1,6 +1,6 @@
-package com.vinfai.sms.partner.impl;
+package com.vinfai.sms.channel.impl;
 
-import com.vinfai.sms.partner.ISmsChannelService;
+import com.vinfai.sms.channel.ISmsChannelService;
 import org.springframework.stereotype.Component;
 
 /**

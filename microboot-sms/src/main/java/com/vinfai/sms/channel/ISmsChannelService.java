@@ -1,4 +1,4 @@
-package com.vinfai.sms.partner;
+package com.vinfai.sms.channel;
 
 /**
  * 短信渠道发送短信服务

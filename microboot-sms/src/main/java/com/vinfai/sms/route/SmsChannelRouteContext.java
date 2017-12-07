@@ -1,12 +1,10 @@
 package com.vinfai.sms.route;
 
 import com.vinfai.sms.constant.SmsChannelEnum;
-import com.vinfai.sms.partner.ISmsChannelService;
-import com.vinfai.sms.partner.impl.YIMEIChannelService;
+import com.vinfai.sms.channel.ISmsChannelService;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -15,7 +13,7 @@ import java.util.Map;
 /**
  * 路由上下文
  *
- * @author fangwenhui
+ * @author vinfai
  * @date 2017-12-06 17:59
  **/
 @Component("smsChannelRouteContext")
