@@ -31,15 +31,6 @@ public class RabbitMQTopicConfig {
     public static String testUserQueueName = "test_add_user_all";
 
 
-  /*  @Bean
-    ConnectionFactory connectionFactory() {
-        CachingConnectionFactory connectionFactory = new CachingConnectionFactory(host, port);
-        connectionFactory.setUsername(userName);
-        connectionFactory.setPassword(password);
-        connectionFactory.setVirtualHost(vhost);
-        return connectionFactory;
-    }*/
-
     @Bean
     Queue userPointQueue() {
         return new Queue(testPointQueueName, true);
