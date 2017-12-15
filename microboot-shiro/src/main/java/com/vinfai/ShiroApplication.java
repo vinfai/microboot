@@ -10,7 +10,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 /**
  * boot
  *
- * @author fangwenhui
+ * @author vinfai
  * @date 2017-12-13 19:31
  **/
 @SpringBootConfiguration

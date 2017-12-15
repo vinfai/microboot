@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * login
  *
- * @author fangwenhui
+ * @author vinfai
  * @date 2017-12-13 20:49
  **/
 @RestController
