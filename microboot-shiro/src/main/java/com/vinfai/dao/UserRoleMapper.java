@@ -1,9 +1,11 @@
 package com.vinfai.dao;
 
-import com.vinfai.entity.UserRole;
+import com.vinfai.entity.UserRoleKey;
 
 public interface UserRoleMapper {
-    int insert(UserRole record);
+    int deleteByPrimaryKey(UserRoleKey key);
 
-    int insertSelective(UserRole record);
+    int insert(UserRoleKey record);
+
+    int insertSelective(UserRoleKey record);
 }

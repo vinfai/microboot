@@ -3,50 +3,56 @@ package com.vinfai.entity;
 import java.util.Date;
 
 public class User {
-    private Long id;
+    private Integer id;
 
-    private String nickname;
+    private String address;
 
-    private String email;
-
-    private String pswd;
+    private Date birthday;
 
     private Date createTime;
 
-    private Date lastLoginTime;
+    private Integer deleteStatus;
 
-    private Long status;
+    private String description;
 
-    public Long getId() {
+    private String email;
+
+    private Integer locked;
+
+    private String nickName;
+
+    private String password;
+
+    private Integer sex;
+
+    private String telephone;
+
+    private Date updateTime;
+
+    private String userName;
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getNickname() {
-        return nickname;
+    public String getAddress() {
+        return address;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname == null ? null : nickname.trim();
+    public void setAddress(String address) {
+        this.address = address == null ? null : address.trim();
     }
 
-    public String getEmail() {
-        return email;
+    public Date getBirthday() {
+        return birthday;
     }
 
-    public void setEmail(String email) {
-        this.email = email == null ? null : email.trim();
-    }
-
-    public String getPswd() {
-        return pswd;
-    }
-
-    public void setPswd(String pswd) {
-        this.pswd = pswd == null ? null : pswd.trim();
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
 
     public Date getCreateTime() {
@@ -57,19 +63,83 @@ public class User {
         this.createTime = createTime;
     }
 
-    public Date getLastLoginTime() {
-        return lastLoginTime;
+    public Integer getDeleteStatus() {
+        return deleteStatus;
     }
 
-    public void setLastLoginTime(Date lastLoginTime) {
-        this.lastLoginTime = lastLoginTime;
+    public void setDeleteStatus(Integer deleteStatus) {
+        this.deleteStatus = deleteStatus;
     }
 
-    public Long getStatus() {
-        return status;
+    public String getDescription() {
+        return description;
     }
 
-    public void setStatus(Long status) {
-        this.status = status;
+    public void setDescription(String description) {
+        this.description = description == null ? null : description.trim();
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email == null ? null : email.trim();
+    }
+
+    public Integer getLocked() {
+        return locked;
+    }
+
+    public void setLocked(Integer locked) {
+        this.locked = locked;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName == null ? null : nickName.trim();
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
+    }
+
+    public Integer getSex() {
+        return sex;
+    }
+
+    public void setSex(Integer sex) {
+        this.sex = sex;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone == null ? null : telephone.trim();
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName == null ? null : userName.trim();
     }
 }

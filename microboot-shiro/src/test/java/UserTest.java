@@ -1,5 +1,5 @@
 import com.vinfai.ShiroApplication;
-import com.vinfai.dao.UserMapper;
+import com.vinfai.dao.IUserDao;
 import com.vinfai.entity.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,23 +23,24 @@ import java.util.Random;
 public class UserTest {
 
     @Autowired
-    private UserMapper userDao;
+    private IUserDao userDao;
 
     @Test
     public void test() {
         User user = new User();
-        user.setNickname("jack"+ new Random());
+      /*  user.setNickname("jack"+ new Random());
         user.setEmail("vinfai85@gmail.com");
         user.setPswd("123456");
         user.setStatus(1L);
         user.setCreateTime(new Date());
-        userDao.insert(user);
+        userDao.insert(user);*/
     }
 
     @Test
     public void query() {
-        String name = "jack";
-        User user = userDao.selectUserByName(name);
+        String name = "admin";
+//        User user = userDao.selectByUserName(name);
+        User user = userDao.selectByPrimaryKey(1);
         System.out.println(user.getId());
 
     }

@@ -1,5 +1,7 @@
 package com.vinfai.shiro.config;
 
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
+import org.apache.shiro.crypto.hash.Hash;
 import org.apache.shiro.mgt.DefaultSecurityManager;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
@@ -12,7 +14,7 @@ import java.util.Map;
 
 /**
  * shiro 配置
- *
+ *http://blog.csdn.net/xtiawxf/article/details/52571949
  * @author fangwenhui
  * @date 2017-12-13 17:21
  **/
@@ -57,9 +59,23 @@ public class ShiroConfiguration {
 
     }
 
+    @Bean(name="credentialsMatcher")
+    public HashedCredentialsMatcher hashedCredentialsMatcher() {
+        HashedCredentialsMatcher matcher = new HashedCredentialsMatcher();
+        //;//散列的次数，比如散列两次，相当于 md5(md5(""));
+        matcher.setHashAlgorithmName("MD5");
+        matcher.setHashIterations(1);
+        //storedCredentialsHexEncoded默认是true，此时用的是密码加密用的是Hex编码；false时用Base64编码
+        matcher.setStoredCredentialsHexEncoded(true);
+        return matcher;
+
+    }
+
     @Bean
     public UserRealm myUserRealm() {
         UserRealm realm = new UserRealm();
+        realm.setCredentialsMatcher(hashedCredentialsMatcher());
+        // realm.setCacheManager(ehCacheManager);
         return realm;
     }
     /**
@@ -70,7 +86,6 @@ public class ShiroConfiguration {
     public SecurityManager securityManager() {
         DefaultSecurityManager securityManager = new DefaultWebSecurityManager();
         securityManager.setRealm(myUserRealm());
-
         return securityManager;
     }
 

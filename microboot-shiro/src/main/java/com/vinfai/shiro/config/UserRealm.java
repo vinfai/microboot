@@ -3,6 +3,7 @@ package com.vinfai.shiro.config;
 import com.vinfai.entity.User;
 import com.vinfai.service.IUserService;
 import org.apache.shiro.authc.*;
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
@@ -33,6 +34,18 @@ public class UserRealm extends AuthorizingRealm {
 
         UsernamePasswordToken token = (UsernamePasswordToken)authenticationToken;
         String userName = token.getUsername();
+        User user = userService.getUserByName(userName);
+        if (user == null) {
+            throw new UnknownAccountException("用户不存在");
+        }
+//        HashedCredentialsMatcher
+        //密码校验
+        //TODO 加密算法+密码比较
+        SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(user, user.getPassword(), null, getName());
+
+        return authenticationInfo;
+        /*UsernamePasswordToken token = (UsernamePasswordToken)authenticationToken;
+
         String password = String.valueOf(token.getPassword());
 
         User user = userService.getUserByName(userName);
@@ -42,13 +55,14 @@ public class UserRealm extends AuthorizingRealm {
         System.out.println(getName());
         //密码salt..
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(user, user.getPswd(), getName());
-
-        /**
-         *    // 当验证都通过后，把用户信息放在session里
+*/
+        /*
+        当验证都通过后，把用户信息放在session里
          Session session = SecurityUtils.getSubject().getSession();
          session.setAttribute("userSession", user);
          session.setAttribute("userSessionId", user.getId());
+
+                return null;
          */
-                return authenticationInfo;
     }
 }
