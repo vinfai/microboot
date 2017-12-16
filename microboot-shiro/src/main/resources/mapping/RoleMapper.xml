@@ -13,6 +13,16 @@
   <sql id="Base_Column_List">
     id, create_time, description, name, role_key, status, update_time
   </sql>
+
+
+  <select id="getRolesByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tb_role
+    where id in(select role_id from  tb_user_role where user_id=#{userId})
+
+  </select>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

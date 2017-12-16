@@ -78,6 +78,17 @@
     id, create_time, description, icon, is_hide, level, name, sort, source_key, source_url, 
     type, update_time, parent_id
   </sql>
+
+
+  <select id="getResourcesByRoleId" parameterType="java.lang.Integer"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tb_resource
+    where id in (select resource_id from tb_role_resource where role_id=#{roleId})
+
+  </select>
+
+
   <select id="selectByExample" parameterType="com.vinfai.entity.ResourceExample" resultMap="BaseResultMap">
     select
     <if test="distinct">

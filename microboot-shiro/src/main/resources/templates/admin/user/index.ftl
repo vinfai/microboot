@@ -105,9 +105,10 @@
 			    queryParamsType: "undefined",
 			    //json数据解析
 			    responseHandler: function(res) {
+			        console.log(res);
 			        return {
-			            "rows": res.content,
-			            "total": res.totalElements
+			            "rows": res.list,
+			            "total": res.total
 			        };
 			    },
 			    //数据列
@@ -182,7 +183,7 @@
                     	operateHtml = operateHtml + '<@shiro.hasPermission name="system:user:grant"><button class="btn btn-info btn-xs" type="button" onclick="grant(\''+row.id+'\')"><i class="fa fa-arrows"></i>&nbsp;关联角色</button></@shiro.hasPermission>';
                         return operateHtml;
                     }
-			    }]
+			    }/**/]
 			});
         });
         

@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2017-12-13 19:31
  **/
 @SpringBootApplication
-//@EnableWebMvc
+//@EnableWebMvc springboot 中EnableAutoConfiguration 会自动去猜
 @MapperScan("com.vinfai.dao")
 public class ShiroApplication {
 

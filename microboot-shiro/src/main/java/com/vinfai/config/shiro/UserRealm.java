@@ -1,14 +1,15 @@
-package com.vinfai.shiro.config;
+package com.vinfai.config.shiro;
 
 import com.vinfai.entity.User;
 import com.vinfai.service.IUserService;
 import org.apache.shiro.authc.*;
-import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+
+import java.util.Set;
 
 /**
  * 用户认证
@@ -21,11 +22,22 @@ public class UserRealm extends AuthorizingRealm {
     @Autowired
     private IUserService userService;
 
-    //授权
+    //授权 获取当前用户的权限
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
+        User user = (User) principalCollection.getPrimaryPrincipal();
 
-        return null;
+        SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
+        User dbUser = userService.getUserByName(user.getUserName());
+
+        //查询有的权限和角色
+        Set<String> roleSet = userService.getRolesByUserId(dbUser.getId());
+        Set<String> permissionSet = userService.getPermissionsByUserId(dbUser.getId());
+
+        authorizationInfo.setRoles(roleSet);
+        authorizationInfo.setStringPermissions(permissionSet);
+
+        return authorizationInfo;
     }
 
     //认证
@@ -40,7 +52,7 @@ public class UserRealm extends AuthorizingRealm {
         }
 //        HashedCredentialsMatcher
         //密码校验
-        //TODO 加密算法+密码比较
+        //TODO 加密算法+密码比较,在shiroconfig中配置
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(user, user.getPassword(), null, getName());
 
         return authenticationInfo;

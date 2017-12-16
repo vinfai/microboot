@@ -29,4 +29,17 @@ public class IndexController extends BaseController {
 
         return "hello";
     }
+
+    @RequestMapping(value ={"/admin/","/admin/index"})
+    public String index2(){
+        logger.info("admin index page.");
+        return "admin/index";
+    }
+
+    @RequestMapping(value = {"/admin/welcome"})
+    public String welcome(){
+
+        return "admin/welcome";
+    }
+
 }

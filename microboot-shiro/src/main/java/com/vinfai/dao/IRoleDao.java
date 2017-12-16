@@ -2,6 +2,8 @@ package com.vinfai.dao;
 
 import com.vinfai.entity.Role;
 
+import java.util.List;
+
 public interface IRoleDao {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,10 @@ public interface IRoleDao {
     int updateByPrimaryKeySelective(Role record);
 
     int updateByPrimaryKey(Role record);
+
+
+    List<Role> getRolesByUserId(Integer userId);
+
+
+
 }

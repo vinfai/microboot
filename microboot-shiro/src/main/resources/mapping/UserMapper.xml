@@ -21,6 +21,13 @@
     id, address, birthday, create_time, delete_status, description, email, locked, nick_name, 
     password, sex, telephone, update_time, user_name
   </sql>
+
+  <select id="selectUserList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tb_user
+  </select>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

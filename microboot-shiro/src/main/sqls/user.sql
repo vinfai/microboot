@@ -1,53 +1,67 @@
-/*表结构插入*/
-DROP TABLE IF EXISTS `u_permission`;
+CREATE TABLE `tb_resource` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `create_time` datetime DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `icon` varchar(255) DEFAULT NULL,
+  `is_hide` int(11) DEFAULT NULL,
+  `level` int(11) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `sort` int(11) DEFAULT NULL,
+  `source_key` varchar(255) DEFAULT NULL,
+  `source_url` varchar(255) DEFAULT NULL,
+  `type` int(11) DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `parent_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKf5ra2gn0xedeida2op8097sr5` (`parent_id`),
+  CONSTRAINT `FKf5ra2gn0xedeida2op8097sr5` FOREIGN KEY (`parent_id`) REFERENCES `tb_resource` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
-CREATE TABLE `u_permission` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `url` varchar(256) DEFAULT NULL COMMENT 'url地址',
-  `name` varchar(64) DEFAULT NULL COMMENT 'url描述',
+CREATE TABLE `tb_role` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `create_time` datetime DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `role_key` varchar(255) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
-/*Table structure for table `u_role` */
-
-DROP TABLE IF EXISTS `u_role`;
-
-CREATE TABLE `u_role` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(32) DEFAULT NULL COMMENT '角色名称',
-  `type` varchar(10) DEFAULT NULL COMMENT '角色类型',
-  PRIMARY KEY (`id`)
+CREATE TABLE `tb_role_resource` (
+  `role_id` int(11) NOT NULL,
+  `resource_id` int(11) NOT NULL,
+  PRIMARY KEY (`role_id`,`resource_id`),
+  KEY `FK868kc8iic48ilv5npa80ut6qo` (`resource_id`),
+  CONSTRAINT `FK7ffc7h6obqxflhj1aq1mk20jk` FOREIGN KEY (`role_id`) REFERENCES `tb_role` (`id`),
+  CONSTRAINT `FK868kc8iic48ilv5npa80ut6qo` FOREIGN KEY (`resource_id`) REFERENCES `tb_resource` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*Table structure for table `u_role_permission` */
-
-DROP TABLE IF EXISTS `u_role_permission`;
-
-CREATE TABLE `u_role_permission` (
-  `rid` bigint(20) DEFAULT NULL COMMENT '角色ID',
-  `pid` bigint(20) DEFAULT NULL COMMENT '权限ID'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-/*Table structure for table `u_user` */
-
-DROP TABLE IF EXISTS `u_user`;
-
-CREATE TABLE `u_user` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `nickname` varchar(20) DEFAULT NULL COMMENT '用户昵称',
-  `email` varchar(128) DEFAULT NULL COMMENT '邮箱|登录帐号',
-  `pswd` varchar(32) DEFAULT NULL COMMENT '密码',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `last_login_time` datetime DEFAULT NULL COMMENT '最后登录时间',
-  `status` bigint(1) DEFAULT '1' COMMENT '1:有效，0:禁止登录',
+CREATE TABLE `tb_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `address` varchar(255) DEFAULT NULL,
+  `birthday` datetime DEFAULT NULL,
+  `create_time` datetime DEFAULT NULL,
+  `delete_status` int(11) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `locked` int(11) DEFAULT NULL,
+  `nick_name` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `sex` int(11) DEFAULT NULL,
+  `telephone` varchar(255) DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `user_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
-/*Table structure for table `u_user_role` */
-
-DROP TABLE IF EXISTS `u_user_role`;
-
-CREATE TABLE `u_user_role` (
-  `uid` bigint(20) DEFAULT NULL COMMENT '用户ID',
-  `rid` bigint(20) DEFAULT NULL COMMENT '角色ID'
+CREATE TABLE `tb_user_role` (
+  `user_id` int(11) NOT NULL,
+  `role_id` int(11) NOT NULL,
+  PRIMARY KEY (`user_id`,`role_id`),
+  KEY `FKea2ootw6b6bb0xt3ptl28bymv` (`role_id`),
+  CONSTRAINT `FK7vn3h53d0tqdimm8cp45gc0kl` FOREIGN KEY (`user_id`) REFERENCES `tb_user` (`id`),
+  CONSTRAINT `FKea2ootw6b6bb0xt3ptl28bymv` FOREIGN KEY (`role_id`) REFERENCES `tb_role` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+

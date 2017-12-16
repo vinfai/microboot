@@ -27,4 +27,8 @@ public interface IResourceDao {
     int updateByPrimaryKeySelective(Resource record);
 
     int updateByPrimaryKey(Resource record);
+
+    List<Resource> getResourcesByRoleId(Integer roleId);
+
+
 }

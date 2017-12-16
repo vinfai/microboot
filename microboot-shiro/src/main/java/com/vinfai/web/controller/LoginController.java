@@ -47,26 +47,6 @@ public class LoginController {
             model.put("message", "用户或密码不正确");
         }
         return "admin/login";
-
-
-        /*if (StringUtils.isEmpty(user.getNickname()) || StringUtils.isEmpty(user.getPswd())) {
-            request.setAttribute("msg", "用户名或密码不能为空！");
-            return "login";
-        }
-        Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken token=new UsernamePasswordToken(user.getNickname(),user.getPswd());
-        try {
-            subject.login(token);
-            return "redirect:usersPage";
-        }catch (LockedAccountException lae) {
-            token.clear();
-            request.setAttribute("msg", "用户已经被锁定不能登录，请与管理员联系！");
-            return "login";
-        } catch (AuthenticationException e) {
-            token.clear();
-            System.out.println("用户或密码不正确！");
-            request.setAttribute("msg", "用户或密码不正确！");
-            return "login";
-        }*/
     }
+
 }
