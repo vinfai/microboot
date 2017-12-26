@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: sms
+  cloud:
+    config:
+      label: master
+      profile: dev
+      uri: http://localhost:9888

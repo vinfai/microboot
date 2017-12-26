@@ -2,12 +2,14 @@ package com.vinfai.web.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.vinfai.common.JsonResult;
 import com.vinfai.dto.UserDTO;
 import com.vinfai.entity.User;
 import com.vinfai.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -54,7 +56,35 @@ public class UserController {
     }
 
 
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public String edit(@PathVariable Integer id, ModelMap map) {
+       /* User user = userService.find(id);
+        map.put("user", user);*/
+        return "admin/user/form";
+    }
 
+    @RequestMapping(value= {"/edit"} ,method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResult edit(User user,ModelMap map){
+        try {
+            userService.saveOrUpdate(user);
+        } catch (Exception e) {
+            return JsonResult.failure(e.getMessage());
+        }
+        return JsonResult.success();
+    }
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResult delete(@PathVariable Integer id,ModelMap map) {
+        try {
+            userService.delete(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return JsonResult.failure(e.getMessage());
+        }
+        return JsonResult.success();
+    }
 
 
 

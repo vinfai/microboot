@@ -3,6 +3,7 @@ package com.vinfai.dto;
 import java.util.Date;
 import java.util.Set;
 
+@SuppressWarnings("ALL")
 public class UserDTO {
     private Integer id;
 

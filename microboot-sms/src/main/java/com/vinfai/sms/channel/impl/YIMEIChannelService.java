@@ -1,6 +1,7 @@
 package com.vinfai.sms.channel.impl;
 
 import com.vinfai.sms.channel.ISmsChannelService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 /**
@@ -12,9 +13,18 @@ import org.springframework.stereotype.Component;
 @Component("YIMEIChannelService")
 public class YIMEIChannelService implements ISmsChannelService {
 
+    @Value("${sms.yimei.url}")
+    private String url;
+
     @Override
     public String sendSMS(String phone, String content) {
         System.out.println("send sms by yi mei.");
+        System.out.println(url);
+
         return null;
     }
+
+
+
+
 }

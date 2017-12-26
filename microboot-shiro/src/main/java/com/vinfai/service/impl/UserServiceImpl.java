@@ -77,6 +77,18 @@ public class UserServiceImpl implements IUserService {
         return premissoinSet;
     }
 
+
+    @Override
+    public Boolean saveOrUpdate(User user) {
+
+        return null;
+    }
+
+    @Override
+    public Boolean delete(Integer userId) {
+        return null;
+    }
+
     @Override
     public List<UserDTO> getUserList() {
         List<User> userList =  userDao.selectUserList();

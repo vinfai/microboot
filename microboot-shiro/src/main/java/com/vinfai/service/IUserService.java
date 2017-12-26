@@ -16,4 +16,9 @@ public interface IUserService {
     Set<String> getPermissionsByUserId(Integer userId);
 
     List<UserDTO> getUserList();
+
+
+    Boolean saveOrUpdate(User user);
+
+    Boolean delete(Integer userId);
 }

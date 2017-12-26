@@ -52,7 +52,7 @@ public class ShiroConfiguration {
         shiroFilterFactoryBean.setSuccessUrl("/index");
         shiroFilterFactoryBean.setUnauthorizedUrl("/403");
 
-        //TODO READ FROM RESOURCES.
+        //TODO READ FROM DB.RESOURCES.
         filterChainDefinitionMap.put("/admin/user/index", "perms[system:user:index]");
         filterChainDefinitionMap.put("/admin/user/add", "perms[system:user:add]");
         filterChainDefinitionMap.put("/admin/user/edit*", "perms[system:user:edit]");

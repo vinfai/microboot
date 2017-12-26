@@ -1,0 +1,20 @@
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          #配置git仓库地址
+          uri: https://github.com/vinfai/config-repo
+          #配置仓库路径
+          search-paths: respo
+          #多个仓库配置
+#          repos:
+#            hello:
+#              uri:
+#          username:
+#          password:
+#配置仓库的分支
+      label: master
+
+
+
