@@ -34,8 +34,13 @@
 		<module>microboot-mybatis</module>
 		<module>microboot-rabbitmq</module>
 		<module>microboot-shiro</module>
-
-	</modules>
+		<module>configServer</module>
+		<module>microboot-log</module>
+		<module>microboot-sms</module>
+		<module>eurekaServer</module>
+        <module>booking-service</module>
+        <module>booking-consumer</module>
+    </modules>
 
 
 	<dependencies>

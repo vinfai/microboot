@@ -1,0 +1,14 @@
+server:
+  port: 8998
+spring:
+  application:
+    name: eureka-registry
+eureka:
+  instance:
+    hostname: eureka-peer2
+  client:
+    #指向另一个注册中心
+    serviceUrl:
+      defaultZone: http://eureka-peer1:8999/eureka/
+    register-with-eureka: true
+
