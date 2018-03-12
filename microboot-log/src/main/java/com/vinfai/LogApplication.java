@@ -13,6 +13,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 public class LogApplication {
 
     public static void main(String[] args) {
+        System.out.println("hello");
         SpringApplication.run(LogApplication.class, args);
     }
 }
