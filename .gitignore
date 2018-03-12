@@ -8,7 +8,7 @@ logs/
 *.iml
 mvnw
 */*.cmd
-
+ 
 target/
 .mvn/
 **/.DS_Store
