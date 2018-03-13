@@ -54,7 +54,6 @@ public class RabbitMQConfig {
 //        factory.setConcurrentConsumers(1);
 //        factory.setMaxConcurrentConsumers(10);
 
-        /*test*/
         factory.setConnectionFactory(connectionFactory());
         return factory;
     }
