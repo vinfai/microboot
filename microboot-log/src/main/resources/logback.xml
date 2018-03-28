@@ -63,6 +63,7 @@
 
             <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
                 <level>TRACE</level>
+
             </filter>
             <!-- Safely log to the same file from multiple JVMs. Degrades performance! -->
             <!--<prudent>：如果是 true，日志会被安全的写入文件，即使其他的FileAppender也在向此文件做写入操作，效率低，默认是 false。
@@ -141,10 +142,47 @@
         </filter>
     </appender>
 
+    <!-- 专门的日志写到一个文件中 -->
+    <appender name="userVistorLog"   class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 日志日常打印文件 -->
+        <file>logs/user.vistor.log</file>
+        <!-- 配置日志所生成的目录以及生成文件名的规则 在logs/mylog-2017-06-31.0.log.zip -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/user.vistor-%d{yyyy-MM-dd}.%i.log.zip</fileNamePattern>
+            <!-- 如果按天来回滚，则最大保存时间为365天，365天之前的都将被清理掉 -->
+            <maxHistory>365</maxHistory>
+            <!-- 日志总保存量为10GB -->
+            <totalSizeCap>10GB</totalSizeCap>
+            <timeBasedFileNamingAndTriggeringPolicy  class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!--文件达到 最大128MB时会被压缩和切割 -->
+                <maxFileSize>128 MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+
+
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <!-- 文件输出的日志 的格式 -->
+        <encoder>
+            <pattern>
+                [ %-5level] [%date{yyyy-MM-dd HH:mm:ss}] %logger{96} -%msg%n
+            </pattern>
+            <charset>UTF-8</charset> <!-- 此处设置字符集 -->
+        </encoder>
+        <!-- Safely log to the same file from multiple JVMs. Degrades performance! -->
+        <prudent>false</prudent>
+    </appender>
+
+    <logger name="user.vistor" level="info" additivity="false">
+        <appender-ref ref="userVistorLog" />
+        <appender-ref ref="stash"/>
+    </logger>
+
     <root level="DEBUG">
         <appender-ref ref="FILE" />
         <!--<appender-ref ref="FILETEST" />-->
         <appender-ref ref="STDOUT" />
-        <appender-ref ref="stash"/>
+       <!-- <appender-ref ref="stash"/>-->
     </root>
 </configuration>

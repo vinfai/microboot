@@ -1,4 +1,6 @@
 import com.vinfai.LogApplication;
+import com.vinfai.util.LogFileName;
+import com.vinfai.util.LogUtil;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +33,7 @@ public class Test {
      "message" => "hello1878"
      }
      */
-    private Logger logger = LoggerFactory.getLogger("hahahName");
+   /* private Logger logger = LoggerFactory.getLogger("hahahName");
 
     @org.junit.Test
     public void testLog() {
@@ -41,5 +43,16 @@ public class Test {
             logger.warn("warn log" + i);
             logger.debug("debug log" + i);
         }
+    }*/
+
+
+    @org.junit.Test
+    public void testFile() {
+
+        Logger logger = LogUtil.getLogger(LogFileName.USER_VISTOR);
+        for (int i = 0; i < 1000; i++) {
+            logger.info("hello world");
+        }
     }
+
 }
